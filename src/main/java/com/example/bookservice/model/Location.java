@@ -19,9 +19,6 @@ public class Location {
     private Long id;
 
     private String shelf;
-    private int row;
-    private int floor;
-
-    @OneToMany(mappedBy = "location")
-    private List<BookCopy> copies;
+    private String room;
+    private String floor;
 }

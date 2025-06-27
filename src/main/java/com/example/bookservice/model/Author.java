@@ -22,7 +22,4 @@ public class Author {
 
     @Column(columnDefinition = "TEXT")
     private String bio;
-
-    @ManyToMany(mappedBy = "authors")
-    private List<Book> books;
 }
