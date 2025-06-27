@@ -16,10 +16,17 @@ public class BookRequest {
     @NotBlank
     private String isbn;
 
+    private String description;
+
+    @NotNull
+    private LocalDate publishedDate;
+
     @Min(1)
     private int pageCount;
 
     private String language;
+
+    private String coverImageUrl;
 
     @NotNull
     private Long authorId;
