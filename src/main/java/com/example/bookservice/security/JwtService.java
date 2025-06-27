@@ -1,4 +1,4 @@
-package com.example.bookservice.service;
+package com.example.bookservice.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -19,6 +19,8 @@ public class JwtService {
     }
 
     public String extractUsername(String token) {
+
+        System.out.println("[JwtService] Secret: " + signerKey);
         return extractAllClaims(token).getSubject();
     }
 

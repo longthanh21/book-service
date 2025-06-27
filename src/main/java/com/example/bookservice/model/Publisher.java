@@ -22,7 +22,4 @@ public class Publisher {
 
     @Column(columnDefinition = "TEXT")
     private String address;
-
-    @OneToMany(mappedBy = "publisher")
-    private List<Book> books;
 }

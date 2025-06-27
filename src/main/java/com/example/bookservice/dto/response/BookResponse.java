@@ -16,4 +16,11 @@ public class BookResponse {
     private int pageCount;
     private String language;
     private String coverImageUrl;
+    private Long authorId;
+    private String authorName;
+    private Long categoryId;
+    private String categoryName;
+    private Long publisherId;
+    private String publisherName;
+    private int status;
 }

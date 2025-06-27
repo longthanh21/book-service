@@ -35,26 +35,17 @@ public class Book {
     private String coverImageUrl;
 
     @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @ManyToOne
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
-    @ManyToMany
-    @JoinTable(
-            name = "book_authors",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id")
-    )
-    private List<Author> authors;
-
-    @ManyToMany
-    @JoinTable(
-            name = "book_categories",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private List<Category> categories;
-
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<BookCopy> copies;
+    private int status;
 }
 
