@@ -61,12 +61,6 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
 
-        <!-- Spring Boot Security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
         <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -86,7 +80,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Annotation như @PreAuthorize -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
@@ -95,6 +93,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.32</version>
             <optional>true</optional>
         </dependency>
         <dependency>

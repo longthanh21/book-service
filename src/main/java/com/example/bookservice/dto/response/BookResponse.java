@@ -3,6 +3,7 @@ package com.example.bookservice.dto.response;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -23,4 +24,6 @@ public class BookResponse {
     private Long publisherId;
     private String publisherName;
     private int status;
+    private boolean availableInMarket;
+    private BigDecimal price;
 }

@@ -5,16 +5,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-@Service
-public class CustomUserDetailsService implements UserDetailsService {
+import java.util.Collections;
 
+@Service
+public class ApplicationUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
-        // Mặc định cấp quyền "USER"
-        return User.withUsername(username)
-                .password("") // Bỏ qua mật khẩu
-                .roles("USER") // Tạo ROLE_USER
-                .build();
+        // Không cần query DB vì đã có thông tin từ JWT
+        return new User(username, "", Collections.emptyList());
     }
 }
-
