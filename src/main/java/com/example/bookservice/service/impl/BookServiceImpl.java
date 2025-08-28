@@ -2,6 +2,7 @@ package com.example.bookservice.service.impl;
 
 import com.example.bookservice.dto.request.BookRequest;
 import com.example.bookservice.dto.response.BookResponse;
+import com.example.bookservice.exception.NotFoundException;
 import com.example.bookservice.model.Author;
 import com.example.bookservice.model.Book;
 import com.example.bookservice.model.Category;
@@ -43,6 +44,8 @@ public class BookServiceImpl implements BookService {
                 .categoryId(book.getCategory().getId()).categoryName(book.getCategory().getName())
                 .publisherId(book.getPublisher().getId()).publisherName(book.getPublisher().getName())
                 .status(book.getStatus())
+                .availableInMarket(book.isAvailableInMarket())
+                .price(book.getPrice())
                 .build();
     }
 
@@ -68,6 +71,8 @@ public class BookServiceImpl implements BookService {
                 .category(category)
                 .publisher(publisher)
                 .status(request.getStatus())
+                .availableInMarket(request.isAvailableInMarket())
+                .price(request.getPrice())
                 .build();
         return toDto(bookRepository.save(book));
     }
@@ -95,6 +100,8 @@ public class BookServiceImpl implements BookService {
         book.setCategory(category);
         book.setPublisher(publisher);
         book.setStatus(request.getStatus());
+        book.setAvailableInMarket(request.isAvailableInMarket());
+        book.setPrice(book.getPrice());
 
         return toDto(bookRepository.save(book));
     }
@@ -108,7 +115,7 @@ public class BookServiceImpl implements BookService {
     public BookResponse getBookById(Long id) {
         return bookRepository.findById(id)
                 .map(this::toDto)
-                .orElseThrow(() -> new RuntimeException("Book not found"));
+                .orElseThrow(() -> new NotFoundException("Book not found"));
     }
 
     @Override

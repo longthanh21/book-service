@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class BookCopyRequest {
     private String barcode;
-    private String status;
+    private Integer status;
     private Long bookId;
     private Long locationId;
 }

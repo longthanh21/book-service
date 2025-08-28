@@ -3,8 +3,8 @@ package com.example.bookservice.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -47,5 +47,9 @@ public class Book {
     private Publisher publisher;
 
     private int status;
+
+    private boolean availableInMarket;
+
+    private BigDecimal price;
 }
 

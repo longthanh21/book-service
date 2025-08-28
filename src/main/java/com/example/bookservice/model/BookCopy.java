@@ -18,7 +18,7 @@ public class BookCopy {
 
     private String barcode;
 
-    private String status; // AVAILABLE, BORROWED, LOST, DAMAGED
+    private Integer status; // 1:AVAILABLE, 0:BORROWED, 2:LOST, 3:DAMAGED
 
     @ManyToOne
     @JoinColumn(name = "book_id")

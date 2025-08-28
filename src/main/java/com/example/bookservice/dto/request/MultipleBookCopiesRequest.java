@@ -7,5 +7,5 @@ public class MultipleBookCopiesRequest {
     private Long bookId;
     private Long locationId;
     private int quantity;
-    private String status;
+    private Integer status;
 }

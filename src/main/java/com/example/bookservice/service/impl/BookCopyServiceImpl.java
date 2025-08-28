@@ -3,6 +3,7 @@ package com.example.bookservice.service.impl;
 import com.example.bookservice.dto.request.BookCopyRequest;
 import com.example.bookservice.dto.request.MultipleBookCopiesRequest;
 import com.example.bookservice.dto.response.BookCopyResponse;
+import com.example.bookservice.exception.NotFoundException;
 import com.example.bookservice.model.Book;
 import com.example.bookservice.model.BookCopy;
 import com.example.bookservice.model.Location;
@@ -102,6 +103,35 @@ public class BookCopyServiceImpl implements BookCopyService {
             response.setLocationId(copy.getLocation().getId());
             return response;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public BookCopyResponse getBookCopyById(Long id) {
+        BookCopy copy = bookCopyRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Book copy not found"));
+
+        return BookCopyResponse.builder()
+                .id(copy.getId())
+                .barcode(copy.getBarcode())
+                .status(copy.getStatus())
+                .bookId(copy.getBook().getId())
+                .bookTitle(copy.getBook().getTitle())
+                .locationId(copy.getLocation().getId())
+                .locationName(
+                        copy.getLocation().getShelf()
+                                + ", " + copy.getLocation().getRoom()
+                                + ", " + copy.getLocation().getFloor()
+                )
+                .build();
+    }
+
+    @Override
+    public void updateStatus(Long id, Integer newStatus) {
+        BookCopy copy = bookCopyRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Book copy not found"));
+
+        copy.setStatus(newStatus);
+        bookCopyRepository.save(copy);
     }
 
 }

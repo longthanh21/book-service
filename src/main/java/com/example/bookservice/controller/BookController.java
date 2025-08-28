@@ -1,15 +1,17 @@
 package com.example.bookservice.controller;
 
 import com.example.bookservice.dto.request.BookRequest;
+import com.example.bookservice.dto.response.BookDetailResponse;
 import com.example.bookservice.dto.response.BookResponse;
+import com.example.bookservice.repository.BookRepository;
 import com.example.bookservice.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/books")
@@ -17,6 +19,7 @@ import java.util.List;
 public class BookController {
 
     private final BookService bookService;
+    private final BookRepository bookRepository;
 
     @PostMapping
     public ResponseEntity<BookResponse> createBook(@Valid @RequestBody BookRequest request) {
@@ -56,4 +59,18 @@ public class BookController {
         return ResponseEntity.ok(bookService.searchBooks(title, author, isbn, category, page, size));
     }
 
+//    @GetMapping("/detail")
+//    public ResponseEntity<List<BookDetailResponse>> getBookDetail(@RequestParam Long bookId) {
+//        return ResponseEntity.ok(bookRepository.findById(bookId).stream()
+//                .map(book -> BookDetailResponse.builder()
+//                        .id(book.getId())
+//                        .language(book.getLanguage())
+//                        .price(book.getPrice())
+//                        .availableInMarket(book.isAvailableInMarket())
+//                        .pageCount(book.getPageCount())
+//                        .build()
+//                )
+//                .collect(Collectors.toList())
+//        );
+//    }
 }

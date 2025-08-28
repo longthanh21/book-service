@@ -12,7 +12,9 @@ import lombok.NoArgsConstructor;
 public class BookCopyResponse {
     private Long id;
     private String barcode;
-    private String status;
+    private Integer status;
     private Long bookId;
+    private String bookTitle;
     private Long locationId;
+    private String locationName;
 }

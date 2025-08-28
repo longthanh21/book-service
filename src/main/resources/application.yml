@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/book-service
+    url: jdbc:postgresql://localhost:5433/book-db
     username: postgres
     password: longthanh04
     driver-class-name: org.postgresql.Driver
@@ -16,6 +16,36 @@ spring:
       hibernate:
         format_sql: true
 
+#  kafka:
+#    consumer:
+#      group-id: book-service-group
+#      auto-offset-reset: earliest
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+#      properties:
+#        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+#        spring.json.value.default.type: com.example.bookservice.messaging.event.BookCopyStatusEvent
+#        spring.json.trusted.packages: "*"
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: book-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.value.default.type: com.example.bookservice.messaging.event.BookCopyStatusEvent
+
+  #    producer:
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
   application:
     name: book-service
+
+jwt:
+  secret-key: SH9xiK7S2IdaopOjIdoMPILj0GpRIvkDXminzOh72xQ+opwyXReQkn9eWd7kEH7m
+
+internal:
+  token: 0iv9awfva0987uedjfhgtc678e3kdjfsd0fovgi8f90dfovk8f9d0fgfrdfghgf
 
